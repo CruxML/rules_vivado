@@ -114,20 +114,17 @@ vivado_bitstream = rule(
         ),
         "pre_synth_tcl": attr.label_list(
             doc = "Tcl sources to run before synthesis.",
-            mandatory = True,
-            allow_empty = False,
+            mandatory = False,
             allow_files = [".tcl"],
         ),
         "pre_place_tcl": attr.label_list(
             doc = "Tcl sources to run before placement.",
-            mandatory = True,
-            allow_empty = False,
+            mandatory = False,
             allow_files = [".tcl"],
         ),
         "pre_route_tcl": attr.label_list(
             doc = "Tcl sources to run before routing.",
-            mandatory = True,
-            allow_empty = False,
+            mandatory = False,
             allow_files = [".tcl"],
         ),
         "bitstream_constraints": attr.label_list(
