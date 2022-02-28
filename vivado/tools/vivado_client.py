@@ -102,7 +102,7 @@ class VivadoClient:
             else:
                 line_type = "INFO"
 
-        is_error = line_type in ("WARNING", "CRITICAL WARNING", "ERROR")
+        is_error = line_type in ("CRITICAL WARNING", "ERROR")
 
         color_func = {
             "COMMON": lambda x: x,
@@ -518,7 +518,9 @@ def main():
     parser_parent = argparse.ArgumentParser(add_help=False)
     parser_parent.add_argument("-p", "--part", required=True, help="Part number.")
     parser_parent.add_argument("-c", "--constraint", nargs="+", help="Constraint file.")
-    parser_parent.add_argument("--tcl", nargs="+", default=None, help="Tcl script to run.")
+    parser_parent.add_argument(
+        "--tcl", nargs="+", default=None, help="Tcl script to run."
+    )
     parser_parent.add_argument(
         "--verbose", action="store_true", help="Display all output, not just errors."
     )
