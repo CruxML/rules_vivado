@@ -74,7 +74,8 @@ def _vivado_bitstream_impl(ctx):
     bitstream_args = ctx.actions.args()
     bitstream_args.add("bitstream")
     bitstream_args.add_all(common_args)
-    bitstream_args.add("--check")
+    if ctx.attr.bitstream_checks:
+        bitstream_args.add("--check")
     bitstream_args.add_all("-c", ctx.files.bitstream_constraints)
     bitstream_args.add("-i", post_route)
     bitstream_args.add("-o", bitstream)
@@ -129,6 +130,10 @@ vivado_bitstream = rule(
             mandatory = True,
             allow_empty = False,
             allow_files = [".xdc"],
+        ),
+        "bitstream_checks": attr.bool(
+            doc = "After the bitstream is created, run checks to verify DRC and timing etc.",
+            default = True,
         ),
         "_vivado_client": attr.label(
             doc = "Vivado client executable.",
