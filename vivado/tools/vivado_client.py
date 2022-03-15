@@ -102,7 +102,7 @@ class VivadoClient:
             else:
                 line_type = "INFO"
 
-        is_error = line_type in ("CRITICAL WARNING", "ERROR")
+        is_error = line_type in ["ERROR"]
 
         color_func = {
             "COMMON": lambda x: x,
